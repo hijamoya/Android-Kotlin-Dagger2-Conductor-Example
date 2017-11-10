@@ -4,13 +4,12 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.hijamoya.example"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
@@ -20,38 +19,49 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
     dexOptions {
         javaMaxHeapSize "2048M"
     }
-    compileOptions.incremental = false
 }
+
+androidExtensions {
+    experimental = true
+}
+
 
 dependencies {
     //automatically added dependencies when project was created
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //Kotlin dependencies including Anko
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile 'org.jetbrains.anko:anko-support-v4:0.10.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.0.2'
 
     //Dagger 2 dependencies
-    compile 'com.google.dagger:dagger:2.5'
-    kapt 'com.google.dagger:dagger-compiler:2.5'
-    provided 'org.glassfish:javax.annotation:10.0-b28'
+    implementation 'com.google.dagger:dagger-android:2.18'
+    implementation 'com.google.dagger:dagger-android-support:2.18'
+    implementation 'org.glassfish:javax.annotation:10.0-b28'
 
     //Android basic dependencies
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
 
     //Rx dependencies
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxkotlin:0.60.0'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation 'io.reactivex:rxkotlin:0.60.0'
 
-    compile 'com.bluelinelabs:conductor:2.1.4'
+    implementation 'com.bluelinelabs:conductor:2.1.4'
+
+    implementation 'com.google.dagger:dagger:2.18'
+    kapt 'com.google.dagger:dagger-compiler:2.18'
+    implementation 'com.google.dagger:dagger-android:2.18'
+    kapt 'com.google.dagger:dagger-android-processor:2.18'
+    implementation 'com.google.dagger:dagger-android-support:2.18'
+    kapt 'com.google.dagger:dagger-android-support:2.18'
 
     //Test dependencies
-    androidTestCompile 'commons-io:commons-io:2.4'
-    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation 'commons-io:commons-io:2.6'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
