@@ -6,11 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.bluelinelabs.conductor.Controller
 import com.hijamoya.example.dagger.injection.ConductorInjection
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.*
 
-abstract class BaseController(args: Bundle?) : Controller(args) {
+abstract class BaseController(args: Bundle?) : Controller(args), LayoutContainer {
 
-    lateinit var contentView: View
-    var injected = false
+    override val containerView: View?
+        get() = contentView
+
+    private var injected = false
+    private lateinit var contentView: View
 
     protected abstract fun inflateView(inflater: LayoutInflater, container: ViewGroup): View
 
@@ -36,5 +41,10 @@ abstract class BaseController(args: Bundle?) : Controller(args) {
 
     open fun onViewBound(view: View) {
         // for override
+    }
+
+    override fun onDestroyView(view: View) {
+        super.onDestroyView(view)
+        clearFindViewByIdCache()
     }
 }
