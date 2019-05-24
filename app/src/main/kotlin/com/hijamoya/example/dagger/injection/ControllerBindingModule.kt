@@ -15,6 +15,6 @@ abstract class ControllerBindingModule {
     @Binds
     @IntoMap
     @ControllerKey(HomeController::class)
-    internal abstract fun bindHomeControllerInjectorFactory(
-            builder: HomeControllerComponent.Builder): AndroidInjector.Factory<out Controller>
+    abstract fun bindHomeControllerInjectorFactory(builder: HomeControllerComponent.Builder):
+            AndroidInjector.Factory<out Controller>
 }
