@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), HasControllerInjector {
         }
     }
 
-    override fun controllerInjector(): DispatchingAndroidInjector<Controller>? {
+    override fun controllerInjector(): DispatchingAndroidInjector<Controller> {
         return dispatchingControllerInjector
     }
 }
