@@ -25,12 +25,15 @@ android {
     dexOptions {
         javaMaxHeapSize "2048M"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 androidExtensions {
     experimental = true
 }
-
 
 dependencies {
     //automatically added dependencies when project was created
@@ -40,8 +43,8 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.0.2'
 
     //Dagger 2 dependencies
-    implementation 'com.google.dagger:dagger-android:2.18'
-    implementation 'com.google.dagger:dagger-android-support:2.18'
+    implementation 'com.google.dagger:dagger-android:2.24'
+    implementation 'com.google.dagger:dagger-android-support:2.24'
     implementation 'org.glassfish:javax.annotation:10.0-b28'
 
     //Android basic dependencies
@@ -53,12 +56,12 @@ dependencies {
 
     implementation 'com.bluelinelabs:conductor:2.1.4'
 
-    implementation 'com.google.dagger:dagger:2.18'
-    kapt 'com.google.dagger:dagger-compiler:2.18'
-    implementation 'com.google.dagger:dagger-android:2.18'
-    kapt 'com.google.dagger:dagger-android-processor:2.18'
-    implementation 'com.google.dagger:dagger-android-support:2.18'
-    kapt 'com.google.dagger:dagger-android-support:2.18'
+    implementation 'com.google.dagger:dagger:2.24'
+    kapt 'com.google.dagger:dagger-compiler:2.24'
+    implementation 'com.google.dagger:dagger-android:2.24'
+    kapt 'com.google.dagger:dagger-android-processor:2.24'
+    implementation 'com.google.dagger:dagger-android-support:2.24'
+    kapt 'com.google.dagger:dagger-android-support:2.24'
 
     //Test dependencies
     androidTestImplementation 'commons-io:commons-io:2.6'

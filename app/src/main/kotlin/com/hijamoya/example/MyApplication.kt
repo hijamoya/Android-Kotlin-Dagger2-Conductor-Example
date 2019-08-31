@@ -1,22 +1,21 @@
 package com.hijamoya.example
 
-import android.app.Activity
 import android.app.Application
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
+import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-class MyApplication : Application(), HasActivityInjector {
+class MyApplication : Application(), HasAndroidInjector {
 
-    @Inject lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
+    @Inject lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Any>
 
-    override fun activityInjector(): AndroidInjector<Activity> = dispatchingActivityInjector
+    override fun androidInjector(): AndroidInjector<Any>? = dispatchingActivityInjector
 
     override fun onCreate() {
         super.onCreate()
         DaggerAppComponent
-                .builder()
+                .factory()
                 .create(this)
                 .inject(this)
     }
